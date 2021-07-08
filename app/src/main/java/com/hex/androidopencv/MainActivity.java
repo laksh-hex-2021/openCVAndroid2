@@ -13,6 +13,7 @@ import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.JavaCameraView;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
+import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
 import org.opencv.core.Point;
@@ -81,12 +82,20 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         mRgba=inputFrame.rgba();
         mGrey=inputFrame.gray();
+        int height = mGrey.rows();
+        int faceSize = Math.round(height * 0.5F);
+        Mat temp = mGrey.clone();
+        Core.transpose(mGrey, temp);
+        Core.flip(temp, temp, -1);
+        MatOfRect rectFaces = new MatOfRect();
+
+        // java detector fast
 
 
-        MatOfRect faceDetections=new MatOfRect();
-        faceDetector.detectMultiScale(mRgba,faceDetections);
-
-        for(Rect rect:faceDetections.toArray()){
+//        MatOfRect faceDetections=new MatOfRect();
+        faceDetector.detectMultiScale(mRgba,rectFaces);
+//
+        for(Rect rect:rectFaces.toArray()){
             Imgproc.rectangle(mRgba,new Point(rect.x,rect.y), new Point(rect.x+rect.width,rect.y+rect.height), new Scalar(255,0,0));
             int ch = rect.height/2;
             int cw = rect.width/2;
