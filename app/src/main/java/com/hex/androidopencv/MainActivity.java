@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
     CascadeClassifier faceDetector;
     private Mat mRgba, mGrey;
     //private final Matrix mMatrix = new Matrix();
+    private CameraBridgeViewBase mOpenCvCameraView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +61,8 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
         }
 
         javaCameraView.setCvCameraViewListener(this);
-        javaCameraView.enableFpsMeter();
+        javaCameraView.setCameraIndex(1);
+        //javaCameraView.enableFpsMeter();
     }
 
 

@@ -6,14 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <org.opencv.android.JavaCameraView
+        android:id="@+id/javaCamView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.hex.androidopencv.ScannerOverlay
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/javaCamView"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/overlay"
+        android:background="#8B000000"
+        app:line_width="0"
+        app:line_color="#00F1FADA"
+        app:square_width="250"
+        app:square_height="400"
+
         />
+
 
 </RelativeLayout>
