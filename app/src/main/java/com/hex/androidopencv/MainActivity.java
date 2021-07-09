@@ -122,7 +122,6 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
                     FileOutputStream fos=new FileOutputStream(cascFile);
 
 
-
                     byte[] buffer=new byte[4096];
                     int bytesRead;
 
